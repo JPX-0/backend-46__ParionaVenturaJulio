@@ -30,12 +30,12 @@ _- Para crear una cuenta "admin" debe colocar admin. antes de su correo, por eje
   ```
 
 ## **Problemas detectados en el Framework 📡** 
-  * _No podia realizar los metodos [POST, PUT, DELTE] debido a una proteccion que viene por defecto en adonis_
+  * _No podia realizar los métodos [POST, PUT, DELTE] debido a una protección que viene por defecto en AdonisJs_
     - Ubicación: "/config/shield.js" & linea: 134
       <p align="center"><img src="https://firebasestorage.googleapis.com/v0/b/backend-clases.appspot.com/o/adonis_csrf.PNG?alt=media&token=8bf116d9-9273-4ff1-8539-878ef0cfde29" alt="csrf"/></p>
     - Solución: Cambiar de [true] a [false].
   
-  * _No podia crear nuevos datos debido a un error de codigo que viene al instañar adonis_
+  * _No podia crear nuevos datos debido a un error de código que viene al instalar AdonisJs_
     - Ubicación: "/node_modules/@adonisjs/lucid/src/Lucid/Model/index.js" & linea: 356
       <p align="center"><img src="https://firebasestorage.googleapis.com/v0/b/backend-clases.appspot.com/o/adonis_create.PNG?alt=media&token=3e311dd1-ca84-43b9-b64a-7d26dad65fd1" alt="csrf"/></p>
     - Solución: separar el [await].

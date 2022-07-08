@@ -32,11 +32,16 @@ const Products = use('App/Models/Product');
 /*[AUTH]*/  }).prefix('/auth');
 
 /*[VIEW]*/  // LOGIN | REGISTER
-/*[VIEW]*/  Route.get("/", "WebsiteController.renderSesions").middleware('guest'); // ROUTE >> /
+/*[VIEW]*/  Route.get("/", "WebsiteController.renderSesions");             // ROUTE >> /
+/*[VIEW]*/  // LOGOUT
+/*[VIEW]*/  Route.get("/logout", "WebsiteController.renderLogout");        // ROUTE >> /logout/
+/*[VIEW]*/  // ERRORS
+/*[VIEW]*/  Route.get("/login-error", "WebsiteController.renderError");    // ROUTE >> /login-error/
+/*[VIEW]*/  Route.get("/register-error", "WebsiteController.renderError"); // ROUTE >> /register-error/
 /*[VIEW]*/  
 /*[VIEW]*/  Route.group(() => { 
 /*[VIEW]*/    // HOME
-/*[VIEW]*/    Route.get("/", "WebsiteController.renderHome"); // ROUTE >> /website/
+/*[VIEW]*/    Route.get("/", "WebsiteController.renderHome");              // ROUTE >> /website/
 /*[VIEW]*/    // INFO
-/*[VIEW]*/    Route.get("/info", "WebsiteController.renderInfo"); // ROUTE >> /website/info
-/*[VIEW]*/  }).prefix('/website'); // No logré la autenticación, por eso cualquier usuario puede ingresar a las siguientes páginas.
+/*[VIEW]*/    Route.get("/info", "WebsiteController.renderInfo");          // ROUTE >> /website/info/
+/*[VIEW]*/  }).prefix('/website').middleware('auth');

@@ -39,8 +39,7 @@
       <div class="jumbotron">
         <h1>Ingrese Producto</h1>
         <br />
-
-        <form id="formProduct">
+        <form id="formProduct" action="/api/product/" method="post">
           <!-- Campo nombre del producto -->
           <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -73,15 +72,14 @@
           </div>
 
           <!-- Botón de envío -->
-          <button class="btn btn-success mt-3">Enviar</button>
+          <button class="btn btn-success mt-3" type="submit">Enviar</button>
         </form>
         <br />
         <div id="products">
-          {{--  @!section('productTable')  --}}
         </div>
       </div>
 
-      <div class="jumbotron">
+      <!-- <div class="jumbotron">
         <h1>
           Centro de Mensajes (Compresión: <span id="compression-info"></span>%)
         </h1>
@@ -107,7 +105,7 @@
             </button>
           </div>
         </form>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>

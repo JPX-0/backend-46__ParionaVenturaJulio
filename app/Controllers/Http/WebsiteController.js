@@ -2,15 +2,17 @@
 const os = use('os');
 
 class WebsiteController {
-  async renderSesions({ view }) {
-    return view.render("login");
+  async renderSesions({ view, auth, response }) {
+    try {
+      await auth.getUser();
+      return response.redirect("/website");
+    } catch (error) {
+      return view.render("login");
+    }
   }
-  async renderHome({ view, session, auth }) {
-    // console.log("username: ", session.get('username'));
-    // console.log("email: ", session.get('email'));
-    // console.log("session: ", session.all());
-    // console.log("auth: ", auth.user);
-    return view.render("home", { nombre: "" }); // no logré autnticar, por eso el campo se envia vacio
+  async renderHome({ view, auth }) {
+    const { email } = await auth.getUser();
+    return view.render("home", { nombre: email });
   }
   async renderInfo({ view }) {
     return view.render("info", {
@@ -22,6 +24,17 @@ class WebsiteController {
       projectFolder: `"${process.cwd()}"`,
       numOfProcessors: os.cpus().length
     });
+    
+  }
+  async renderLogout({ view, auth }) {
+    const { firstname, lastname } = await auth.getUser();
+    await auth.logout();
+    return view.render("logout", { nombre: `${firstname} ${lastname}` });
+  }
+  async renderError({ view, request }) {
+    const url = request.url();
+    const message = `USER ERROR ${url == "/register-error" ? "SIGNUP" : "LOGIN"}`;
+    return view.render("error-session", { title: url, message });
   }
 }
 
